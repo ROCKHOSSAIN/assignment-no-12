@@ -80,8 +80,8 @@ const Register = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
+                            navigate('/')
                         }
-                        navigate('/')
                     })
                     .catch(error => console.error(error))
             })
