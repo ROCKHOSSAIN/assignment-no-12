@@ -15,8 +15,8 @@ const Register = () => {
     const [district, setdistrict] = useState([])
     const [upazila, setupazila] = useState([])
     const [errorMsg, setErrorMsg] = useState("");
-    const { createUser, updateUserProfile } = useContext(AuthContext)
-
+    const { createUser, updateUserProfile,user } = useContext(AuthContext)
+    const email = user?.email
     useEffect(() => {
         fetch('../../../district.json')
             .then(res => res.json())
@@ -29,14 +29,16 @@ const Register = () => {
     }, [])
     const onSubmit = async(data) => {
         // Check if passwords match
+       
         const imageFile = {image: data.photoUrl[0]}
         console.log(imageFile)
-        const res = await axiosPublic.post(image_hosting_api,imageFile,{
+        const imageRes = await axiosPublic.post(image_hosting_api,imageFile,{
             headers:{
                 'content-type':'multipart/form-data'
             }
         });
-        console.log(res)
+        const imageUrl = imageRes.data.data.display_url;
+        console.log(imageUrl)
         if (data?.password !== data?.confirmPassword) {
             setErrorMsg("Passwords do not match");
             console.log(errorMsg)
@@ -44,19 +46,41 @@ const Register = () => {
         }
         createUser(data.email, data.password)
             .then(result => {
-
+                const email = data.email
+                const name =data.name
+                const district = data.district
+                const upazila = data.upazila
+                const bloodGroup = data.bloodGroup
+                const photoUrl = imageFile
+                const userinfo={
+                    email,
+                    name,
+                    district,
+                    upazila,
+                    bloodGroup,
+                    photoUrl,
+                    status:"active"
+                }
+                console.log(email)
+                console.log(name)
+                console.log(district)
                 const loggedUser = result.user
                 console.log(loggedUser);
-                updateUserProfile(data.name, data.display_url)
-                    .then(() => {
+              
+                updateUserProfile(data.name, imageUrl)
+                    .then((res) => {
+                        axiosPublic.post('/allUser',userinfo)
                         console.log('user profile set')
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "User has been created",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        if(res.data.insertedId){
+
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User has been created",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
                         navigate('/')
                     })
                     .catch(error => console.error(error))

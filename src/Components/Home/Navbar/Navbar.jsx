@@ -38,9 +38,10 @@ const Navbar = () => {
                     
                   {user ?
                   <>
-                  <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Dashboard</NavLink></li>
+                  <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/dashboard'>Dashboard</NavLink></li>
                   <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Fundings</NavLink></li>
       <span> { user?.displayName }</span>
+      {/* <span> { user?.photoURL }</span> */}
 
                   <button onClick={handleLogOut} className='text-white text-lg font-semibold'>Logout</button>
                   </>
