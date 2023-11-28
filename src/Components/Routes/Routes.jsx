@@ -7,6 +7,8 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Dashboard from "../Dashboard/Dashboard";
 import DonorRequest from "../Donor/DonorRequest/DonorRequest";
+import MyDonation from "../Donor/MyDonation/MyDonation";
+import UpdateDonation from "../Donor/MyDonation/UpdateDonation";
   
   const router = createBrowserRouter([
     {
@@ -33,7 +35,16 @@ import DonorRequest from "../Donor/DonorRequest/DonorRequest";
       children:[
       {
        path:'create-donation-request',
-       element:<DonorRequest></DonorRequest>
+       element:<DonorRequest></DonorRequest>,
+      },
+      {
+       path:'my-donation-requests',
+       element:<MyDonation></MyDonation>
+      },
+      {
+       path:'updateDonation/:id',
+       loader:({params}) => fetch(`http://localhost:5000/donorRequest/${params.id}`),
+       element:<UpdateDonation></UpdateDonation>
       }
       ]
     }

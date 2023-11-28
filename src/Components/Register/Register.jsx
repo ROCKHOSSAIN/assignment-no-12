@@ -15,8 +15,7 @@ const Register = () => {
     const [district, setdistrict] = useState([])
     const [upazila, setupazila] = useState([])
     const [errorMsg, setErrorMsg] = useState("");
-    const { createUser, updateUserProfile,user } = useContext(AuthContext)
-    const email = user?.email
+    const { createUser, updateUserProfile } = useContext(AuthContext)
     useEffect(() => {
         fetch('../../../district.json')
             .then(res => res.json())
@@ -27,6 +26,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => setupazila(data))
     }, [])
+    
     const onSubmit = async(data) => {
         // Check if passwords match
        
@@ -51,14 +51,14 @@ const Register = () => {
                 const district = data.district
                 const upazila = data.upazila
                 const bloodGroup = data.bloodGroup
-                const photoUrl = imageFile
+               
                 const userinfo={
                     email,
                     name,
                     district,
                     upazila,
                     bloodGroup,
-                    photoUrl,
+                    imageUrl,
                     status:"active"
                 }
                 console.log(email)
@@ -80,8 +80,8 @@ const Register = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate('/')
                         }
+                        navigate('/')
                     })
                     .catch(error => console.error(error))
             })
