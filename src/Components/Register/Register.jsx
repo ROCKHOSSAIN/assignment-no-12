@@ -59,7 +59,8 @@ const Register = () => {
                     upazila,
                     bloodGroup,
                     imageUrl,
-                    status:"active"
+                    status:"active",
+                    role:"donor"
                 }
                 console.log(email)
                 console.log(name)
@@ -81,7 +82,7 @@ const Register = () => {
                                 timer: 1500
                             });
                         }
-                        navigate('/')
+                        // navigate('/')
                     })
                     .catch(error => console.error(error))
             })
@@ -142,6 +143,7 @@ const Register = () => {
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
                                         </select>
+
 
                                     </div>
                                     <div className="form-control w-full ">

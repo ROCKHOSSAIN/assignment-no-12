@@ -1,20 +1,20 @@
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
-import  { useContext } from 'react';
+import { useContext } from 'react';
 
 const Navbar = () => {
-     const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-      .then(() => { })
-      .catch(error => console.log(error)) 
+            .then(() => { })
+            .catch(error => console.log(error))
     }
-    const {user,logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const navlinks = <>
         <li className='text-lg font- text-sky-900'><NavLink to='/'>Home</NavLink></li>
         <li className='text-lg font- text-sky-900'><NavLink to='/donationsRequests'>Donation Requests</NavLink></li>
         <li className='text-lg font- text-sky-900'><NavLink to='/blog'>Blog</NavLink></li>
     </>
-   
+
     return (
         <div>
             <div className="navbar bg-sky-200 ">
@@ -35,20 +35,35 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-3">
-                    
-                  {user ?
-                  <>
-                  <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/dashboard'>Dashboard</NavLink></li>
-                  <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Fundings</NavLink></li>
-      <span> { user?.displayName }</span>
-      {/* <span> { user?.photoURL }</span> */}
 
-                  <button onClick={handleLogOut} className='text-white text-lg font-semibold'>Logout</button>
-                  </>
-                  :
-                  <Link to='/login'>
-                    <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Login</NavLink></li>
-                    </Link>}
+                    {user ?
+                        <>
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" src={ user?.photoURL } />
+                                    </div>
+                                </div>
+                                <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">
+                                        <li className='text-xl list-none font-xl'> {user?.displayName}</li>
+
+                                           
+                                        </a>
+                                    </li>
+
+                                    <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                                    <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Fundings</NavLink></li>
+                                    <button onClick={handleLogOut} className='text-black text-lg font-semibold'>Logout</button>
+                                </ul>
+                            </div>
+
+                        </>
+                        :
+                        <Link to='/login'>
+                            <li className='text-xl list-none font-xl text-sky-900'><NavLink to='/login'>Login</NavLink></li>
+                        </Link>}
                 </div>
             </div>
         </div>
