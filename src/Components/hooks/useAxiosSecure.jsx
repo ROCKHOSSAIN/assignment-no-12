@@ -1,6 +1,6 @@
 import axios from 'axios';
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'//baseurl banay rakjhse bar bar localhost jate na lekha lage
+    baseURL: 'https://assignment-no-12-server.vercel.app'//baseurl banay rakjhse bar bar localhost jate na lekha lage
 })
 const useAxiosSecure = () => {
     return axiosSecure

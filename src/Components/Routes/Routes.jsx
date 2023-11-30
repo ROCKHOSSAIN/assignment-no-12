@@ -1,21 +1,24 @@
 import {
   createBrowserRouter
 } from "react-router-dom";
-import Layout from "../MainLayout/layout";
-import Home from "../Home/Home/Home";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
+import AddBlog from "../Admin/AddBlog/AddBlog";
+import AdminProfileRoute from "../Admin/AdminProfileRoute/AdminProfileRoute";
+import AllDonationReq from "../Admin/AllDonationReq/AllDonationReq";
+import AllUser from "../Admin/AllUser/AllUser";
+import ContentManagement from "../Admin/ContentManagement/ContentManagement";
 import Dashboard from "../Dashboard/Dashboard";
+import DashBoardProfileRoute from "../Donor/DashboardProfile/DashBoardProfileRoute";
+import DashboardProfile from "../Donor/DashboardProfile/DashboardProfile";
 import DonorRequest from "../Donor/DonorRequest/DonorRequest";
 import MyDonation from "../Donor/MyDonation/MyDonation";
 import UpdateDonation from "../Donor/MyDonation/UpdateDonation";
-import DashboardProfile from "../Donor/DashboardProfile/DashboardProfile";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import DashBoardProfileRoute from "../Donor/DashboardProfile/DashBoardProfileRoute";
-import SearchDonor from "../Home/Banner/SearchDonor";
 import ShowUserInfo from "../Donor/ShowUserInfo/ShowUserInfo";
-import AllUser from "../Admin/AllUser/AllUser";
-import AllDonationReq from "../Admin/AllDonationReq/AllDonationReq";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import SearchDonor from "../Home/Banner/SearchDonor";
+import Home from "../Home/Home/Home";
+import Login from "../Login/Login";
+import Layout from "../MainLayout/layout";
+import Register from "../Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +47,7 @@ const router = createBrowserRouter([
   {
     path: 'dashboard',
     element: <Dashboard></Dashboard>,
-    loader:()=>fetch('http://localhost:5000/allUser'),
+    loader:()=>fetch('https://assignment-no-12-server.vercel.app/allUser'),
     errorElement:<ErrorPage></ErrorPage>,
     children: [
       //admin
@@ -53,9 +56,23 @@ const router = createBrowserRouter([
         element: <AllUser></AllUser>,
       },
       {
+        path: 'profile',
+        element: <AdminProfileRoute></AdminProfileRoute>,
+      },
+      {
         path: 'all-blood-donation-request',
         element: <AllDonationReq></AllDonationReq>,
       },
+      {
+        path: 'content-management',
+        element: <ContentManagement></ContentManagement>,
+        
+      },
+      {
+        path: 'content-management/add-blog',
+        element: <AddBlog></AddBlog>,
+      },
+      
       //donor
       {
         path: 'dashboard',
@@ -76,12 +93,12 @@ const router = createBrowserRouter([
       
       {
         path: 'updateDonation/:id',
-        loader: ({ params }) => fetch(`http://localhost:5000/donorRequest/${params.id}`),
+        loader: ({ params }) => fetch(`https://assignment-no-12-server.vercel.app/donorRequest/${params.id}`),
         element: <UpdateDonation></UpdateDonation>
       },
       {
         path: 'showUserInfo/:id',
-        loader: ({ params }) => fetch(`http://localhost:5000/donorRequest/${params.id}`),
+        loader: ({ params }) => fetch(`https://assignment-no-12-server.vercel.app/donorRequest/${params.id}`),
         element: <ShowUserInfo></ShowUserInfo>
       }
     ]

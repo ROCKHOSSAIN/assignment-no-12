@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../Provider/AuthProvider';
+import React from 'react';
+import Swal from 'sweetalert2';
+import  { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
 import { FaCaretRight } from 'react-icons/fa';
-
-
-const DonorProfile = ({ profiledata }) => {
-
+const AdminProfile = ({profiledata}) => {
     const { upazila,name,bloodGroup,email,district,role,imageUrl } =  profiledata 
     console.log(upazila)
     const { register, handleSubmit, reset } = useForm()
@@ -71,10 +69,6 @@ const DonorProfile = ({ profiledata }) => {
             });
         }
     };
-    // console.log(userinfo[0].name)
-    // const email = user?.email
-    // const name = user?.displayName
-
     return (
         <div>
             <div>
@@ -194,4 +188,4 @@ const DonorProfile = ({ profiledata }) => {
     );
 };
 
-export default DonorProfile;
+export default AdminProfile;

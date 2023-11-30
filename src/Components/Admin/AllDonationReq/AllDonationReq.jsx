@@ -16,14 +16,14 @@ const AllDonationReq = () => {
 
   useEffect(() => {
 
-    fetch('http://localhost:5000/donorRequest')
+    fetch('https://assignment-no-12-server.vercel.app/donorRequest')
       .then(res => res.json())
       .then(data => {
         setuserdata(data)
         // setLoading(false)
       })
   }, [])
-  const email = user?.email
+//   const email = user?.email
   const donorName = user?.displayName
 //   const filteremail = userdata?.filter((userdata) => userdata.email === email &&
 //     (statusFilter === 'all' || user.status === statusFilter));

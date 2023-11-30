@@ -1,13 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react'
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { GiHumanTarget } from "react-icons/gi";
 import { GrUserAdmin } from "react-icons/gr";
 import { MdBlock } from "react-icons/md";
 import { TbLockOpen } from "react-icons/tb";
-import { GiHumanTarget } from "react-icons/gi";
-import { FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
   const [allusers, setAllUser] = useState([])
@@ -83,7 +81,7 @@ const AllUser = () => {
       })
   }
   useEffect(() => {
-    fetch('http://localhost:5000/allUser')
+    fetch('https://assignment-no-12-server.vercel.app/allUser')
       .then(res => res.json())
       .then(data => setAllUser(data))
   }, [])

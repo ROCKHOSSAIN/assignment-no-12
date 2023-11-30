@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
-import DonorProfile from '../Profile/DonorProfile';
-
-const DashBoardProfileRoute = () => {
+import AdminProfile from './AdminProfile';
+const AdminProfileRoute = () => {
     const [userinfo, setuserinfo] = useState([])
     const { user } = useContext(AuthContext)
 
@@ -21,16 +20,18 @@ const DashBoardProfileRoute = () => {
     console.log(userinfo)
     return (
         <div>
-            <div>
-                {filteremail ? (
-                    <DonorProfile key={filteremail._id} profiledata={filteremail} />
-                ) : (
-                    null
-                )}
-            </div>
-
+        <div>
+            {filteremail ? (
+                <AdminProfile key={filteremail._id} profiledata={filteremail} />
+            ) : (
+                null
+            )}
         </div>
-    );
+
+    </div>
+
+        )
 };
 
-export default DashBoardProfileRoute;
+
+export default AdminProfileRoute;

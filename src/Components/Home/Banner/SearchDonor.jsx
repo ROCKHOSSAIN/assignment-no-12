@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CgSearch } from "react-icons/cg";
 // import useAxiousPublic from '../../hooks/useAxiosPublic';
@@ -22,7 +22,7 @@ const SearchDonor = () => {
             .then(data => setupazila(data))
     }, [])
        useEffect(() => {
-        fetch('http://localhost:5000/allUser')
+        fetch('https://assignment-no-12-server.vercel.app/allUser')
             .then(res => res.json())
             .then(data => setSearchDonor(data))
     }, [])

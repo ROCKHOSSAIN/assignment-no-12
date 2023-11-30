@@ -1,16 +1,15 @@
-import { FaHome } from 'react-icons/fa';
-import { NavLink, Outlet, useLoaderData } from 'react-router-dom';
-import { MdDashboardCustomize } from "react-icons/md";
-import { IoCreateSharp } from "react-icons/io5";
-import { RiHandHeartFill } from "react-icons/ri";
-import { RiLogoutCircleRLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import { FaHome } from 'react-icons/fa';
+import { IoCreateSharp } from "react-icons/io5";
+import { MdDashboardCustomize } from "react-icons/md";
+import { RiHandHeartFill, RiLogoutCircleRLine } from "react-icons/ri";
+import { NavLink, Outlet, useLoaderData } from 'react-router-dom';
 // import useAdmin from '../Admin/useAdmin/useAdmin';
 // import { useEffect, useState } from 'react';
-import { AuthContext } from '../Provider/AuthProvider';
-import { MdOutlineEditNote } from "react-icons/md"
 import { useContext } from 'react';
-
+import { FcManager } from "react-icons/fc";
+import { MdOutlineEditNote } from "react-icons/md";
+import { AuthContext } from '../Provider/AuthProvider';
 const Dashboard = () => {
     const role = useLoaderData()
     const {user} = useContext(AuthContext)
@@ -18,7 +17,7 @@ const Dashboard = () => {
     // const [adminRole,setAdminRole] = useState("")
     // useEffect(() => {
 
-    //     fetch('http://localhost:5000/allUser')
+    //     fetch('https://assignment-no-12-server.vercel.app/allUser')
     //         .then(res => res.json())
     //         .then(data => {
     //             setAdmin(data)
@@ -43,7 +42,7 @@ const Dashboard = () => {
     return (
         <div className='flex'>
             {/* dashboard side bar */}
-            <div className='w-32 md:w-64 min-h-screen bg-sky-300'>
+            <div className='w-48 md:w-64 min-h-screen bg-sky-300'>
                 <ul className='menu md:p-5 md:text-xl'>
                     {Role=="Admin" ? 
                         <>
@@ -54,15 +53,27 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to="profile">
+                                    <CgProfile></CgProfile>
+                                    Profile
+                                </NavLink>
+                            </li>
+                            <li>
                                 <NavLink to="all-users">
                                     <CgProfile></CgProfile>
-                                 <h4 className='text-base'>All Users</h4>   
+                                 <h4 className='md:text-base'>All Users</h4>   
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="all-blood-donation-request">
                                     <MdOutlineEditNote></MdOutlineEditNote>
-                                <h4 className='text-base'>  All  Donation Request</h4>
+                                <h4 className='md:text-base'>  All  Donation Request</h4>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="content-management">
+                                    <FcManager></FcManager>
+                                <h4 className='text-base'>Content Management</h4>
                                 </NavLink>
                             </li>
                             <div className="divider"></div>
