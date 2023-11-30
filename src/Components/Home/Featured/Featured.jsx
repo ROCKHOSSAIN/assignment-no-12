@@ -2,7 +2,7 @@ import React from 'react';
 
 const Featured = () => {
     return (
-        <div className='container mx-auto py-10'>
+        <div className='container mx-auto py-10 '>
             <h1 className='text-center font-semibold text-[#cc7045] text-3xl font-poppins mb-10'>Featured</h1>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mx-auto'>
                 <div className="card w-full bg-base-100 shadow-xl">

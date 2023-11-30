@@ -14,7 +14,8 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import DashBoardProfileRoute from "../Donor/DashboardProfile/DashBoardProfileRoute";
 import SearchDonor from "../Home/Banner/SearchDonor";
 import ShowUserInfo from "../Donor/ShowUserInfo/ShowUserInfo";
-import SearchingDonorData from "../Home/Banner/SearchingDonorData";
+import AllUser from "../Admin/AllUser/AllUser";
+import AllDonationReq from "../Admin/AllDonationReq/AllDonationReq";
 
 const router = createBrowserRouter([
   {
@@ -43,8 +44,19 @@ const router = createBrowserRouter([
   {
     path: 'dashboard',
     element: <Dashboard></Dashboard>,
+    loader:()=>fetch('http://localhost:5000/allUser'),
     errorElement:<ErrorPage></ErrorPage>,
     children: [
+      //admin
+      {
+        path: 'all-users',
+        element: <AllUser></AllUser>,
+      },
+      {
+        path: 'all-blood-donation-request',
+        element: <AllDonationReq></AllDonationReq>,
+      },
+      //donor
       {
         path: 'dashboard',
         element: <DashboardProfile></DashboardProfile>,

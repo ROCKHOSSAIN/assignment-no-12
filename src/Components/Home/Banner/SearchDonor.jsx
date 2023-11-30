@@ -22,7 +22,7 @@ const SearchDonor = () => {
             .then(data => setupazila(data))
     }, [])
        useEffect(() => {
-        fetch('http://localhost:5000/alluser')
+        fetch('http://localhost:5000/allUser')
             .then(res => res.json())
             .then(data => setSearchDonor(data))
     }, [])
